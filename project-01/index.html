@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count-Me</title>
+    <!-- Links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"
+    />
+    <!-- styles -->
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-black flex items-center justify-center min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white border-gray-200 dark:bg-gray-900 w-full fixed top-0">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img
+            src="https://img.icons8.com/?size=100&id=gTYyXOYKQjrL&format=png&color=000000"
+            class="h-8"
+            alt="Flowbite Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            >Count Me</span
+          >
+        </a>
+      </div>
+    </nav>
+
+    <!-- Timer Form Layout -->
+    <div
+      id="set-time-layout"
+      class="w-full flex flex-col justify-center items-center min-h-screen px-4"
+    >
+      <div class="w-full max-w-lg p-8 bg-gray-800 rounded-lg">
+        <h1
+          class="text-3xl font-semibold text-center text-white dark:text-gray-200 mb-8"
+        >
+          Set Timer
+        </h1>
+        <form>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              name="hours"
+              id="hours"
+              class="block py-3 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+            />
+            <label
+              for="hours"
+              class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Hours</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              name="minutes"
+              id="minutes"
+              class="block py-3 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+            />
+            <label
+              for="minutes"
+              class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Minutes</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              name="seconds"
+              id="seconds"
+              class="block py-3 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+            />
+            <label
+              for="seconds"
+              class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Seconds</label
+            >
+          </div>
+          <button
+            type="submit"
+            id="start-timer"
+            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Start Timer
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Visible Timer Layout -->
+    <div
+      id="visible-timer-layout"
+      class="w-full flex flex-col justify-center items-center min-h-screen px-4 hidden"
+    >
+      <div class="w-full max-w-lg p-8 bg-gray-800 rounded-lg">
+        <h1
+          id="timer-display"
+          class="text-5xl font-bold text-center text-white dark:text-gray-200 mb-8"
+        >
+          <span id="hours-timer">00</span>:<span id="minutes-timer">00</span
+          >:<span id="seconds-timer">00</span>
+        </h1>
+
+        <button
+          id="reset-timer"
+          class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg py-3 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        >
+          Reset Timer
+        </button>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <script src="script.js"></script>
+    <!-- <script>
+      // JavaScript to toggle between layouts
+      const setTimeLayout = document.getElementById("set-time-layout");
+      const visibleTimerLayout = document.getElementById(
+        "visible-timer-layout"
+      );
+      const timerDisplay = document.getElementById("timer-display");
+      const resetTimer = document.getElementById("reset-timer");
+
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Hide set time layout and show visible timer layout
+        setTimeLayout.style.display = "none";
+        visibleTimerLayout.style.display = "flex";
+
+        // Here you can start the timer logic and update timerDisplay.innerHTML with the countdown
+        // Example: timerDisplay.innerHTML = '00:10:00';
+      });
+
+      resetTimer.addEventListener("click", function () {
+        // Reset timer logic here if necessary
+
+        // Show set time layout and hide visible timer layout
+        setTimeLayout.style.display = "flex";
+        visibleTimerLayout.style.display = "none";
+      });
+    </script> -->
+  </body>
+</html>
